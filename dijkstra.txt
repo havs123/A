@@ -1,0 +1,20 @@
+import random
+from heapq import heappop,heappush
+def dijkstra(graph,start):
+    A={}
+    queue=[(0,start)]
+    while queue:
+        path_len,v=heappop(queue)
+        if v not in A:
+            A[v]=path_len
+            for w,edge_len in graph[v].items():
+                if w not in A:
+                    heappush(queue,(path_len+edge_len,w))
+    return A
+graph={1: {2:10,5:100},
+2 : {3:50},
+3 : {5:10,4:20},
+4 : {5:60},
+5 :{}}
+print(dijkstra(graph,1))
+

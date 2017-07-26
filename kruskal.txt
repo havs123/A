@@ -1,0 +1,18 @@
+def kruskal(g,vertex):
+    t,a=[],{}
+    for i in vertex:
+        a[i]=set({i})
+    for edge in sorted(g):
+        for v1,v2 in g[edge]:
+            if v1 not in a[v2]:
+                t.append((v1,v2,edge))
+                a[v1]=a[v1].union(a[v2])
+                for i in a[v1]:
+                    a[i]=a[v1]
+    return t
+g={5:[[5,1],[1,5]],3:[[4,5],[5,4]],2:[[4,3],[3,4]],1:[[2,3],[3,2]],10:[[1,2],[2,1]],7:[[5,3],[3,5]],6:[[2,4],[4,2]]}
+vertex=[1,2,3,4,5]
+a=kruskal(g,vertex)
+print("The Spanning tree is ")
+for i in a:
+    print("Vertex(U) {0} to Vertex(V) {1} with Weight {2}".format(i[0],i[1],i[2]))
